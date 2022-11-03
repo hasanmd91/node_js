@@ -1,0 +1,6 @@
+[
+  { "model": "BMW", "licence": "ABC-1" },
+  { "model": "Toyota", "licence": "ABC-2" },
+  { "model": "Audi", "licence": "ABC-3" },
+  { "model": "Fiat", "licence": "ABC-4" }
+]
