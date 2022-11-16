@@ -17,7 +17,7 @@ http://localhost:3000/search/bylicence?value=ABC-1
 
 ## search by model
 ```
-http://localhost:3000/search/bymodel?value=Hoppa
+http://localhost:3000/search/bymodel?value=MbW
 ```
 
 # Version 2:
@@ -29,5 +29,5 @@ http://localhost:3000/search?key=licence&value=ABC-1
 
 ## search by model
 ```
-http://localhost:3000/search?key=model&value=Hoppa
+http://localhost:3000/search?key=model&value=MbW
 ```
