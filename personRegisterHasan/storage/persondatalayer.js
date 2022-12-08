@@ -1,5 +1,3 @@
-"use strict";
-
 const persons = require("./person.json");
 
 function search(key, value) {
@@ -16,4 +14,4 @@ function search(key, value) {
   }
 }
 
-module.export = { search };
+module.exports = { search };
