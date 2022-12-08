@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Query result</title>
+  </head>
+  <body>
+    <main>
+      <h1>Flower data</h1>
+      <p>
+        <span class="legend">Flower id:</span
+        ><span><%= result.flowerId %></span>
+      </p>
+      <p>Name: <%= result.name %></p>
+      <p>Unit price is <%= result.unitPrice %></p>
+      <p>Farmer: <%= result.farmer %> €</p>
+      <p>Stock: <%= result.stock %> €</p>
+      <a href="/"><button>Menu</button></a>
+    </main>
+  </body>
+</html>

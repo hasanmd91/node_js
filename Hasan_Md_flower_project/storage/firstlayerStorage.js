@@ -12,7 +12,10 @@ async function getAllFlower() {
 }
 
 async function getOneFlower(id) {
-  return await readStorage(storageFilePath).find(
-    (item) => item[key] === id || null
+  console.log(id);
+  return (await readStorage(storageFilePath)).find(
+    (item) => item[key] == id || null
   );
 }
+
+module.exports = { getAllFlower, getOneFlower };

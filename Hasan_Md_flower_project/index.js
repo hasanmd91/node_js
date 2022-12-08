@@ -4,6 +4,17 @@ const app = express();
 
 const { port, host } = require("./serverConfig.json");
 
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "public")));
+
+const FlowerStorage = require(path.join(
+  __dirname,
+  "storage",
+  "secondLayerStorage"
+));
+
+const flowerStorage = new FlowerStorage();
+
 const menuPath = path.join(__dirname, "menu.html");
 
 app.set("view engine", "ejs");
@@ -16,12 +27,30 @@ app.get("/", (req, res) => {
 
 // rendering all flower page
 app.get("/all", (req, res) => {
-  res.render("allFlower");
+  flowerStorage
+    .getAll()
+    .then((data) => res.render("allFlower", { result: data }));
 });
 
 // rendering one flower page
 app.get("/getflower", (req, res) => {
-  res.render("oneFlower");
+  res.render("oneFlower", {
+    title: "Get",
+    header1: "Get",
+    action: "/getflower",
+  });
+});
+
+app.post("/getflower", (req, res) => {
+  console.log(req.body);
+  if (!req.body) {
+    return res.sendStatus(500);
+  }
+  const flowerId = req.body.id;
+  flowerStorage
+    .getOne(flowerId)
+    .then((flower) => res.render("flowerPage", { result: flower }))
+    .catch((error) => console.log(error));
 });
 
 // rendering add flower page
