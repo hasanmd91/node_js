@@ -7,7 +7,7 @@ const {
 } = require("./firstlayerStorage");
 
 module.exports = class FlowerStorage {
-  getCodes() {
+  get CODES() {
     return CODES;
   }
   //get all flower
@@ -32,7 +32,8 @@ module.exports = class FlowerStorage {
   }
   // add new flwoer to the storage
 
-  Addflower(newFlower) {
+  insertFlower(newFlower) {
+    console.log(newFlower);
     return new Promise(async (resolve, reject) => {
       if (newFlower) {
         if (!newFlower.flowerId) {

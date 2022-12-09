@@ -68,4 +68,23 @@ app.get("/inputform", (req, res) => {
   });
 });
 
+app.post("/inputform", (req, res) => {
+  if (!req.body) {
+    return res.statusCode(500);
+  }
+  flowerStorage
+    .insertFlower(req.body)
+    .then((status) => sendStatusPage(res, status))
+    .catch((error) => sendErrorPage(res, error));
+});
+
 app.listen(port, host, () => console.log("server is listening "));
+
+//helper functions
+function sendErrorPage(res, error, title = "Error", header1 = "Error") {
+  sendStatusPage(res, error, title, header1);
+}
+
+function sendStatusPage(res, status, title = "Status", header1 = "Status") {
+  return res.render("statusPage", { title, header1, status });
+}
