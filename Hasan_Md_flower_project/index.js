@@ -56,7 +56,16 @@ app.post("/getflower", (req, res) => {
 // rendering add flower page
 
 app.get("/inputform", (req, res) => {
-  res.render("form");
+  res.render("form", {
+    title: "Add Flower",
+    header1: "Add a new Flower",
+    action: "/inputform",
+    flowerId: { value: "", readonly: "" },
+    name: { value: "", readonly: "" },
+    unitPrice: { value: "", readonly: "" },
+    farmer: { value: "", readonly: "" },
+    stock: { value: "", readonly: "" },
+  });
 });
 
 app.listen(port, host, () => console.log("server is listening "));
