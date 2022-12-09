@@ -12,10 +12,16 @@ async function getAllFlower() {
 }
 
 async function getOneFlower(id) {
-  console.log(id);
   return (await readStorage(storageFilePath)).find(
     (item) => item[key] == id || null
   );
 }
 
-module.exports = { getAllFlower, getOneFlower };
+async function addflower(newFlowerObject) {
+  const data = await readStorage(storageFilePath);
+  data.push(newFlowerObject);
+  console.log(data);
+  return writeStorage(storageFilePath, data);
+}
+
+module.exports = { getAllFlower, getOneFlower, addflower };
