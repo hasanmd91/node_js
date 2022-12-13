@@ -78,6 +78,27 @@ app.post("/inputform", (req, res) => {
     .catch((error) => sendErrorPage(res, error));
 });
 
+//update flower
+
+app.get("/updateform", (req, res) => {
+  res.render("form", {
+    title: "update Flower",
+    header1: "Update a Flower data",
+    action: "/updatedata",
+    flowerId: { value: "", readonly: "" },
+    name: { value: "", readonly: "readonly" },
+    unitPrice: { value: "", readonly: "readonly" },
+    farmer: { value: "", readonly: "readonly" },
+    stock: { value: "", readonly: "readonly" },
+  });
+});
+
+app.post("/updatedata", (req, res) => {
+  if (!req.body) {
+    return res.sendStatus(500);
+  }
+});
+
 app.listen(port, host, () => console.log("server is listening "));
 
 //helper functions

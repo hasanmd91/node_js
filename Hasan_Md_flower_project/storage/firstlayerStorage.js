@@ -17,11 +17,13 @@ async function getOneFlower(id) {
   );
 }
 
-async function addflower(newFlowerObject) {
+async function addFlower(newFlowerObject) {
   const data = await readStorage(storageFilePath);
   data.push(newFlowerObject);
   console.log(data);
   return writeStorage(storageFilePath, data);
 }
 
-module.exports = { getAllFlower, getOneFlower, addflower };
+async function updateFlower() {}
+
+module.exports = { getAllFlower, getOneFlower, addFlower };
