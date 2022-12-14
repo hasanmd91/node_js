@@ -4,6 +4,7 @@ const {
   getAllFlower,
   getOneFlower,
   addFlower,
+  updateFlower,
 } = require("./firstlayerStorage");
 
 module.exports = class FlowerStorage {
@@ -50,5 +51,19 @@ module.exports = class FlowerStorage {
     });
   }
 
-  update() {}
+  // update flower to the storage
+
+  update(flower) {
+    return new Promise(async (resolve, reject) => {
+      if (flower) {
+        if (await updateFlower(flower)) {
+          resolve(MESSAGES.UPDATE_OK(flower.flowerId));
+        } else {
+          reject(MESSAGES.NOT_UPDATED());
+        }
+      } else {
+        reject(MESSAGES.NOT_UPDATED());
+      }
+    });
+  }
 };

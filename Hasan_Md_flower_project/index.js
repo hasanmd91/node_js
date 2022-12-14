@@ -42,13 +42,11 @@ app.get("/getflower", (req, res) => {
 });
 
 app.post("/getflower", (req, res) => {
-  console.log(req.body);
   if (!req.body) {
     return res.sendStatus(500);
   }
-  const flowerId = req.body.id;
   flowerStorage
-    .getOne(flowerId)
+    .getOne(req.body.id)
     .then((flower) => res.render("flowerPage", { result: flower }))
     .catch((error) => console.log(error));
 });
@@ -80,6 +78,7 @@ app.post("/inputform", (req, res) => {
 
 //update flower
 
+//geting update form
 app.get("/updateform", (req, res) => {
   res.render("form", {
     title: "update Flower",
@@ -92,12 +91,35 @@ app.get("/updateform", (req, res) => {
     stock: { value: "", readonly: "readonly" },
   });
 });
-
+// geting udated flower from database by id
 app.post("/updatedata", (req, res) => {
   if (!req.body) {
     return res.sendStatus(500);
   }
+
+  flowerStorage.getOne(req.body.flowerId).then((flower) =>
+    res.render("form", {
+      title: "update Flower",
+      header1: "Update a Flower data",
+      action: "/update",
+      flowerId: { value: flower.flowerId, readonly: "readonly" },
+      name: { value: flower.name, readonly: "" },
+      unitPrice: { value: flower.unitPrice, readonly: "" },
+      farmer: { value: flower.farmer, readonly: "" },
+      stock: { value: flower.stock, readonly: "" },
+    })
+  );
 });
+
+app.post("/update", (req, res) => {
+  if (!req.body) return res.statusCode(500);
+  flowerStorage
+    .update(req.body)
+    .then((status) => sendStatusPage(res, status))
+    .catch((error) => sendErrorPage(res, error));
+});
+
+//posting updated flower in the database
 
 app.listen(port, host, () => console.log("server is listening "));
 
