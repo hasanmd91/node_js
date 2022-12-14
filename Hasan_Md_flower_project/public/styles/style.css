@@ -1,0 +1,91 @@
+body {
+  background-color: rgb(45, 43, 43);
+  color: white;
+}
+
+main,
+form {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container > div {
+  display: flex;
+  gap: 10px;
+}
+
+input[readonly] {
+  background-color: lightgray;
+}
+
+table {
+  border-collapse: collapse;
+  margin-bottom: 1em;
+}
+
+table,
+th,
+td {
+  border: solid black 1px;
+  padding: 0.5rem 1rem;
+  border-color: rgb(59, 56, 56);
+}
+
+thead {
+  background-color: rgb(233, 232, 223);
+  color: black;
+}
+
+button {
+  font-family: sans-serif;
+  font-weight: 600;
+  width: 13em;
+  padding: 14px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(202, 197, 197);
+  color: black;
+  cursor: pointer;
+  margin: 5px;
+}
+
+p.error {
+  border: dashed orangered 2px;
+  padding: 1em;
+}
+
+p.info {
+  border: solid orange 2px;
+  padding: 1em;
+}
+
+h1.error {
+  color: orangered;
+}
+
+.legend {
+  font-weight: bold;
+  color: orange;
+  margin-right: 5px;
+}
+
+label {
+  display: inline-block;
+  line-height: 50px;
+  width: 150px;
+}
+
+input {
+  padding: 10px;
+  width: 200px;
+  border-radius: 5px;
+  border: none;
+}
