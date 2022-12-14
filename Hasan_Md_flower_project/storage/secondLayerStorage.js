@@ -5,6 +5,7 @@ const {
   getOneFlower,
   addFlower,
   updateFlower,
+  removeFlower,
 } = require("./firstlayerStorage");
 
 module.exports = class FlowerStorage {
@@ -33,7 +34,6 @@ module.exports = class FlowerStorage {
   // add new flwoer to the storage
 
   insertFlower(newFlower) {
-    console.log(newFlower);
     return new Promise(async (resolve, reject) => {
       if (newFlower) {
         if (!newFlower.flowerId) {
@@ -63,6 +63,20 @@ module.exports = class FlowerStorage {
         }
       } else {
         reject(MESSAGES.NOT_UPDATED());
+      }
+    });
+  }
+
+  // remove flower from the flower storage
+
+  remove(flowerId) {
+    return new Promise(async (resolve, reject) => {
+      if (!flowerId) {
+        reject(MESSAGES.NOT_FOUND("---empty---"));
+      } else if (await removeFlower(flowerId)) {
+        resolve(MESSAGES.REMOVE_OK(flowerId));
+      } else {
+        reject(MESSAGES.NOT_REMOVED(flowerId));
       }
     });
   }

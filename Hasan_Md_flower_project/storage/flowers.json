@@ -56,22 +56,15 @@
     "stock": 10
   },
   {
-    "flowerId": 11,
-    "name": "LILI ",
-    "unitPrice": 10,
-    "farmer": "hasan",
-    "stock": 10
-  },
-  {
     "flowerId": 12,
     "name": "shapla",
     "unitPrice": 12,
     "farmer": "hasan",
-    "stock": 12
+    "stock": 12122
   },
   {
     "flowerId": 14,
-    "name": "LILI ABIDA AKTAR",
+    "name": "LILI ",
     "unitPrice": 14,
     "farmer": "hasan",
     "stock": 14

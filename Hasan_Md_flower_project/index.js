@@ -35,8 +35,8 @@ app.get("/all", (req, res) => {
 // rendering one flower page
 app.get("/getflower", (req, res) => {
   res.render("oneFlower", {
-    title: "Get",
-    header1: "Get",
+    title: "Getaflower",
+    header1: "Search for a flower",
     action: "/getflower",
   });
 });
@@ -55,8 +55,8 @@ app.post("/getflower", (req, res) => {
 
 app.get("/inputform", (req, res) => {
   res.render("form", {
-    title: "Add Flower",
-    header1: "Add a new Flower",
+    title: "Add flower",
+    header1: "Add a new flower",
     action: "/inputform",
     flowerId: { value: "", readonly: "" },
     name: { value: "", readonly: "" },
@@ -81,8 +81,8 @@ app.post("/inputform", (req, res) => {
 //geting update form
 app.get("/updateform", (req, res) => {
   res.render("form", {
-    title: "update Flower",
-    header1: "Update a Flower data",
+    title: "update flower",
+    header1: "Update a flower data",
     action: "/updatedata",
     flowerId: { value: "", readonly: "" },
     name: { value: "", readonly: "readonly" },
@@ -99,8 +99,8 @@ app.post("/updatedata", (req, res) => {
 
   flowerStorage.getOne(req.body.flowerId).then((flower) =>
     res.render("form", {
-      title: "update Flower",
-      header1: "Update a Flower data",
+      title: "update flower",
+      header1: "Update a flower data",
       action: "/update",
       flowerId: { value: flower.flowerId, readonly: "readonly" },
       name: { value: flower.name, readonly: "" },
@@ -111,6 +111,8 @@ app.post("/updatedata", (req, res) => {
   );
 });
 
+//posting updated flower in the database
+
 app.post("/update", (req, res) => {
   if (!req.body) return res.statusCode(500);
   flowerStorage
@@ -119,7 +121,24 @@ app.post("/update", (req, res) => {
     .catch((error) => sendErrorPage(res, error));
 });
 
-//posting updated flower in the database
+// removing flower from the database
+
+app.get("/removeflower", (req, res) => {
+  res.render("oneflower", {
+    title: "Remove",
+    header1: "Remove a flower by id",
+    action: "/removed ",
+  });
+});
+
+app.post("/removed", (req, res) => {
+  if (!req.body) return res.sendStatus(500);
+
+  flowerStorage
+    .remove(req.body.id)
+    .then((status) => sendStatusPage(res, status))
+    .catch((error) => sendErrorPage(res, error));
+});
 
 app.listen(port, host, () => console.log("server is listening "));
 
